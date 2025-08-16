@@ -1,69 +1,80 @@
-# React + TypeScript + Vite
+# Introduction to Redux (redux-introduction)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Details
+**Description:**
+A beginner-friendly React project demonstrating the fundamentals of **Redux** and **Redux Toolkit** for state management. This repository includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Setting up the **Redux store**.
+* Creating **slices** with `createSlice` for modular state management.
+* Defining **actions** and handling **action payloads**.
+* Using **custom hooks** for cleaner component integration with Redux.
+* A practical **Counter feature** as an example of state updates.
 
-## Expanding the ESLint configuration
+Structured with scalability in mind, this project is ideal for developers learning Redux concepts and best practices in a TypeScript + React environment.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Folder Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```plaintext
+REDUX-INTRODUCTION/
+├── node_modules/
+├── public/
+├── src/
+│ ├── assets/
+│ ├── redux/
+│ │ └── features/
+│ │ └── counter/
+│ │ ├── counterSlice.ts
+│ │ ├── hook.ts
+│ │ └── store.ts
+│ ├── App.css
+│ ├── App.tsx
+│ ├── index.css
+│ └── main.tsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+About Me
+Hi, I am Nadim Mahmud Nion. I have recently concluded my graduation from the department of Computer Science and Engineering (CSE) at the Daffodil International University (DIU). I have been learning MERN Stack Web Development since 2022. I am expertise in the following skills:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React
+- Express.js
+- TypeScript
+- Mongoose
+- Postman
+- MongoDB Compass
+- NoSQLBooster
+- Node.js
+- MongoDB Atlas
+- JWT
+- Stripe
+- Vite
+- React Router
+- Firebase (Authentication & Hosting)
+- Vercel
+- JavaScript
+- Advanced JavaScript
+- Daisy UI
+- Bootstrap
+- Tailwind
+- HTML5
+- CSS3
+- Media Query
+
+ I have built multiple projects using these skills. You are invited to my GitHub profile to know about my projects and don't forget to give a star to my projects.
+
+ > Developed by Nadim Mahmud Nion
