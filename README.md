@@ -116,7 +116,7 @@ http://localhost:5173
 
 - Vite
 
-- JavaScript (ES6+)
+- TypeScript
 
 - CSS
 
