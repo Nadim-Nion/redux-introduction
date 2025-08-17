@@ -8,7 +8,7 @@ function App() {
   const { count } = useAppSelector((state) => state.counter);
   // const { count } = useSelector((state: RootState) => state.counter);
 
-  console.log("count:", count);
+  // console.log("count:", count);
 
   /* const handleIncrement = (amount: number) => {
     dispatch(increment(amount));
