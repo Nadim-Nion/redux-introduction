@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import Logo from "../../assets/Logo";
+import { ModeToggle } from "../ModeToggler";
 
 export default function Navbar() {
   return (
@@ -11,6 +12,9 @@ export default function Navbar() {
 
       <Link to={"/"}>Task</Link>
       <Link to={"/user"}>User</Link>
+      <div className="ml-auto">
+        <ModeToggle />
+      </div>
     </nav>
   );
 }

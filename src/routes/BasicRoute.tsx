@@ -1,5 +1,5 @@
 import App from "@/App";
-import Login from "@/pages/login";
+import Login from "@/pages/Login";
 import Task from "@/pages/Task";
 import User from "@/pages/User";
 import { Route, Routes } from "react-router";
