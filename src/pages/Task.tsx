@@ -1,3 +1,4 @@
+import { AddTaskModal } from "@/components/modules/tasks/AddTaskModal";
 import TaskCard from "@/components/modules/tasks/TaskCard";
 import { selectTasks } from "@/redux/features/task/taskSlice";
 import { useSelector } from "react-redux";
@@ -8,7 +9,10 @@ function Task() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 mt-20">
-      <div>Task</div>
+      <div className="flex justify-between items-center">
+        <div>Task</div>
+        <AddTaskModal />
+      </div>
       <div className="space-y-5 mt-5">
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />

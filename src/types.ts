@@ -6,3 +6,11 @@ export interface ITask {
   isCompleted: boolean;
   priority: "High" | "Medium" | "Low"; 
 }
+
+
+export interface IFormData {
+  title: string;
+  description: string
+  dueDate: Date;
+  priority: 'High' | 'Low' | 'Medium'
+}

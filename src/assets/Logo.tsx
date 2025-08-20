@@ -48,6 +48,7 @@ const Logo = () => {
           fontSize="22"
           fontWeight="700"
           letterSpacing="0.2"
+          className="fill-black dark:fill-white"
         >
           Task Master
         </text>
