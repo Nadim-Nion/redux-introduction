@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function Task() {
   const tasks = useSelector(selectTasks);
-  console.log("tasks:", tasks);
+  // console.log("tasks:", tasks);
 
   return (
     <div className="mx-auto max-w-7xl px-5 mt-20">

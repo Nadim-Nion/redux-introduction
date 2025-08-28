@@ -39,6 +39,10 @@ import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
+import { useAppDispatch } from "@/redux/hook";
+import { addTask } from "@/redux/features/task/taskSlice";
+// import { is } from "date-fns/locale";
+
 
 export function AddTaskModal() {
   const form = useForm<IFormData>({
@@ -50,8 +54,19 @@ export function AddTaskModal() {
     },
   });
 
+  const dispatch = useAppDispatch();
+
   const onSubmit = (data: IFormData) => {
     console.log("data in the form:", data);
+
+    // dispatch(addTask(data));
+
+    const taskData = {
+    ...data,
+    dueDate: data.dueDate.toISOString(), 
+  };
+
+  dispatch(addTask(taskData));
   };
 
   return (
