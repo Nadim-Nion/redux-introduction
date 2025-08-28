@@ -1,14 +1,11 @@
 // types.ts
-export interface ITaskInput {
+export interface ITask {
+  id: string;
   title: string;
   description: string;
   dueDate: string;
-  priority: "High" | "Medium" | "Low";
-}
-
-export interface ITask extends ITaskInput {
-  id: string;
   isCompleted: boolean;
+  priority: "High" | "Medium" | "Low";
 }
 
 

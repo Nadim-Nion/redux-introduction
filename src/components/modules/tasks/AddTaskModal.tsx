@@ -34,15 +34,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { IFormData } from "@/types";
-import { useForm } from "react-hook-form";
+import type { IFormData, ITask } from "@/types";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { useAppDispatch } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
 // import { is } from "date-fns/locale";
-
 
 export function AddTaskModal() {
   const form = useForm<IFormData>({
@@ -56,17 +55,17 @@ export function AddTaskModal() {
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data: IFormData) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log("data in the form:", data);
 
-    // dispatch(addTask(data));
+    // dispatch(addTask(data as ITask));
 
-    const taskData = {
-    ...data,
-    dueDate: data.dueDate.toISOString(), 
-  };
+    const taskData: ITask = {
+      ...(data as ITask),
+      dueDate: data.dueDate.toISOString(),
+    };
 
-  dispatch(addTask(taskData));
+    dispatch(addTask(taskData));
   };
 
   return (

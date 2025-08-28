@@ -1,8 +1,9 @@
 import type { RootState } from "@/redux/store";
-import type { ITask, ITaskInput } from "@/types";
+import type { ITask } from "@/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 // import { is } from "date-fns/locale";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "@reduxjs/toolkit";
 
 interface IInitialState {
   tasks: ITask[];
@@ -35,23 +36,37 @@ const initialState: IInitialState = {
   filter: "All",
 };
 
+type DraftTask = Pick<ITask, "title" | "description" | "dueDate" | "priority">;
+
+const createTask = (taskData: DraftTask): ITask => {
+  return {
+    id: nanoid(),
+    isCompleted: false,
+    ...taskData,
+  };
+};
+
 const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<ITaskInput>) => {
-      const id = uuidv4();
+    addTask: (state, action: PayloadAction<DraftTask>) => {
+      // const id = uuidv4();
 
-      const taskData = {
-        ...action.payload,
-        id,
-        isCompleted: false,
-      };
+      // const taskData = {
+      //   ...action.payload,
+      //   id,
+      //   isCompleted: false,
+      // };
+
+      const taskData = createTask(action.payload);
 
       state.tasks.push(taskData);
     },
   },
 });
+
+/* I have watched the video of module (25-3) till 6:06 mins */
 
 export const selectTasks = (state: RootState) => {
   return state.todo.tasks;
