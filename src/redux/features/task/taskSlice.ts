@@ -32,7 +32,16 @@ interface IInitialState {
 */
 
 const initialState: IInitialState = {
-  tasks: [],
+  tasks: [
+    {
+      id: "12345",
+      title: "Initialize Frontend",
+      description: "Create Home page and routing",
+      dueDate: "2025-11-30",
+      isCompleted: false,
+      priority: "High",
+    },
+  ],
   filter: "All",
 };
 
@@ -63,6 +72,16 @@ const taskSlice = createSlice({
 
       state.tasks.push(taskData);
     },
+    toggleCompleteState: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach((task) =>
+        task.id === action.payload
+          ? (task.isCompleted = !task.isCompleted)
+          : task
+      );
+    },
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    },
   },
 });
 
@@ -76,6 +95,6 @@ export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, toggleCompleteState, deleteTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
