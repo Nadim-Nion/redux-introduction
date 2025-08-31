@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/redux/hook";
 import type { ITask } from "@/types";
 
 import { Trash2 } from "lucide-react";
+import UpdateTaskModal from "./UpdateTaskModal";
 
 interface IProps {
   task: ITask;
@@ -28,15 +29,19 @@ export default function TaskCard({ task }: IProps) {
               "bg-red-500": task.priority === "Low",
             })}
           ></div>
-          <h1 className={cn({"line-through": task.isCompleted})}>{task.title}</h1>
+          <h1 className={cn({ "line-through": task.isCompleted })}>
+            {task.title}
+          </h1>
         </div>
         <div className="flex gap-3 items-center">
+          <UpdateTaskModal task={task} />
           <Button onClick={() => dispatch(deleteTask(task.id))}>
             <Trash2 />
           </Button>
-          <Checkbox 
-          checked={task.isCompleted}
-          onClick={() => dispatch(toggleCompleteState(task.id))} />
+          <Checkbox
+            checked={task.isCompleted}
+            onClick={() => dispatch(toggleCompleteState(task.id))}
+          />
         </div>
       </div>
       <p className="mt-5">{task.description}</p>

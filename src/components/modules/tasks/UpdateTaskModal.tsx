@@ -19,11 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -34,22 +30,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { IFormData, ITask } from "@/types";
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
+import { updateTask } from "@/redux/features/task/taskSlice";
 import { useAppDispatch } from "@/redux/hook";
-import { addTask } from "@/redux/features/task/taskSlice";
-// import { is } from "date-fns/locale";
+// import { Label } from "@/components/ui/label";
+import type { IFormData, ITask } from "@/types";
+import { Popover } from "@radix-ui/react-popover";
+import { format } from "date-fns";
+import { CalendarIcon, Pencil } from "lucide-react";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
-export function AddTaskModal() {
+export default function UpdateTaskModal({ task }: { task: ITask }) {
   const form = useForm<IFormData>({
     defaultValues: {
-      title: "",
-      description: "",
-      dueDate: new Date(),
-      priority: "Low",
+      title: task.title || "",
+      description: task.description || "",
+      dueDate: task.dueDate ? new Date(task.dueDate) : new Date(),
+      priority: task.priority || "Low",
     },
   });
 
@@ -58,31 +55,32 @@ export function AddTaskModal() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // console.log("data in the form:", data);
 
-    // dispatch(addTask(data as ITask));
-
     const taskData: ITask = {
       ...(data as ITask),
+      id: task.id, // Preserve the existing task ID
+      isCompleted: task.isCompleted, // Preserve completion status
       dueDate: data.dueDate.toISOString(),
     };
 
-    dispatch(addTask(taskData));
+    dispatch(updateTask(taskData));
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add New Task</Button>
+        <Button variant="outline">
+          <Pencil />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add a Task</DialogTitle>
+          <DialogTitle>Edit Your Task</DialogTitle>
+          <DialogDescription>
+            Make changes to your task here. Click save when you&apos;re done.
+          </DialogDescription>
         </DialogHeader>
-        <DialogDescription className="sr-only">
-          Fill up the form to add task
-        </DialogDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-            
             {/* Title */}
             <FormField
               control={form.control}
