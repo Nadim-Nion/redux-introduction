@@ -160,7 +160,7 @@ export default function UpdateTaskModal({ task }: { task: ITask }) {
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
                   <FormControl>
-                    <Select {...field}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-[380px]">
                         <SelectValue placeholder="Select a fruit" />
                       </SelectTrigger>
