@@ -82,7 +82,6 @@ export function AddTaskModal() {
         </DialogDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-            
             {/* Title */}
             <FormField
               control={form.control}
@@ -162,7 +161,7 @@ export function AddTaskModal() {
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
                   <FormControl>
-                    <Select {...field}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-[380px]">
                         <SelectValue placeholder="Select a fruit" />
                       </SelectTrigger>

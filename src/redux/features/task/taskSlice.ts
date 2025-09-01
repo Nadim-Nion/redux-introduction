@@ -95,20 +95,42 @@ const taskSlice = createSlice({
         return task.id === action.payload.id ? action.payload : task;
       });
     },
+    updateFilter: (
+      state,
+      action: PayloadAction<"All" | "High" | "Medium" | "Low">
+    ) => {
+      state.filter = action.payload;
+    },
   },
 });
 
 /* I have watched the video of module (25-3) till 6:06 mins */
 
 export const selectTasks = (state: RootState) => {
-  return state.todo.tasks;
+  const filter = state.todo.filter;
+  console.log("filter in the taskSlice.ts:", filter);
+
+  if (filter === "Low") {
+    return state.todo.tasks.filter((task) => task.priority === "Low");
+  } else if (filter === "Medium") {
+    return state.todo.tasks.filter((task) => task.priority === "Medium");
+  } else if (filter === "High") {
+    return state.todo.tasks.filter((task) => task.priority === "High");
+  } else {
+    return state.todo.tasks;
+  }
 };
 
 export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask, toggleCompleteState, deleteTask, updateTask } =
-  taskSlice.actions;
+export const {
+  addTask,
+  toggleCompleteState,
+  deleteTask,
+  updateTask,
+  updateFilter,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;
