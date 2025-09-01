@@ -8,10 +8,14 @@ export interface ITask {
   priority: "High" | "Medium" | "Low";
 }
 
-
 export interface IFormData {
   title: string;
-  description: string
+  description: string;
   dueDate: Date;
-  priority: 'High' | 'Low' | 'Medium'
+  priority: "High" | "Low" | "Medium";
+}
+
+export interface IUser {
+  id: string;
+  name: string;
 }
