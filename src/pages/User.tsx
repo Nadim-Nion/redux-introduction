@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export default function User() {
   const users = useSelector(selectUsers);
-  console.log("users in user page:", users);
 
   return (
     <div className="mx-auto max-w-7xl px-5 mt-20">
