@@ -7,7 +7,16 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  users: [],
+  users: [
+    {
+      id: "mMooE3zcbO4f69Z-rDosV",
+      name: "Nion",
+    },
+    {
+      id: "mMooE3zcbO4f69Z-rDosD",
+      name: "Joe",
+    },
+  ],
 };
 
 type DraftTask = Pick<IUser, "name">;

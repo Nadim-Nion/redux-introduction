@@ -39,8 +39,9 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
+import { selectUsers } from "@/redux/features/user/userSlice";
 // import { is } from "date-fns/locale";
 
 export function AddTaskModal() {
@@ -50,10 +51,12 @@ export function AddTaskModal() {
       description: "",
       dueDate: new Date(),
       priority: "Low",
+      assignedTo: "",
     },
   });
 
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // console.log("data in the form:", data);
@@ -171,6 +174,32 @@ export function AddTaskModal() {
                           <SelectItem value="High">High</SelectItem>
                           <SelectItem value="Low">Low</SelectItem>
                           <SelectItem value="Medium">Medium</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Assigned To */}
+            <FormField
+              control={form.control}
+              name="assignedTo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Assigned To</FormLabel>
+                  <FormControl>
+                    <Select onValueChange={field.onChange} value={field.value || ''}>
+                      <SelectTrigger className="w-[380px]">
+                        <SelectValue placeholder="Select a user" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Assign a user</SelectLabel>
+                          {users.map((user) => (
+                            <SelectItem key={user.id} value={user.id}>{user.name}</SelectItem>
+                          ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
