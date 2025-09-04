@@ -42,9 +42,12 @@ import { CalendarIcon } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
 import { selectUsers } from "@/redux/features/user/userSlice";
+import { useState } from "react";
 // import { is } from "date-fns/locale";
 
 export function AddTaskModal() {
+  const [open, setOpen] = useState(false);
+
   const form = useForm<IFormData>({
     defaultValues: {
       title: "",
@@ -69,10 +72,13 @@ export function AddTaskModal() {
     };
 
     dispatch(addTask(taskData));
+
+    setOpen(false);
+    form.reset();
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Add New Task</Button>
       </DialogTrigger>
@@ -190,7 +196,10 @@ export function AddTaskModal() {
                 <FormItem>
                   <FormLabel>Assigned To</FormLabel>
                   <FormControl>
-                    <Select onValueChange={field.onChange} value={field.value || ''}>
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value || ""}
+                    >
                       <SelectTrigger className="w-[380px]">
                         <SelectValue placeholder="Select a user" />
                       </SelectTrigger>
@@ -198,7 +207,9 @@ export function AddTaskModal() {
                         <SelectGroup>
                           <SelectLabel>Assign a user</SelectLabel>
                           {users.map((user) => (
-                            <SelectItem key={user.id} value={user.id}>{user.name}</SelectItem>
+                            <SelectItem key={user.id} value={user.id}>
+                              {user.name}
+                            </SelectItem>
                           ))}
                         </SelectGroup>
                       </SelectContent>
