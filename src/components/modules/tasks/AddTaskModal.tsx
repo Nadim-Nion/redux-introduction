@@ -34,14 +34,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { IFormData, ITask } from "@/types";
+import type { IFormData } from "@/types"; /* ITask */
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { addTask } from "@/redux/features/task/taskSlice";
-import { selectUsers } from "@/redux/features/user/userSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/hook";
+// import { addTask } from "@/redux/features/task/taskSlice";
+// import { selectUsers } from "@/redux/features/user/userSlice";
 import { useState } from "react";
 // import { is } from "date-fns/locale";
 
@@ -58,20 +58,20 @@ export function AddTaskModal() {
     },
   });
 
-  const dispatch = useAppDispatch();
-  const users = useAppSelector(selectUsers);
+  // const dispatch = useAppDispatch();
+  // const users = useAppSelector(selectUsers);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // console.log("data in the form:", data);
+    console.log("data in the form:", data);
 
     // dispatch(addTask(data as ITask));
 
-    const taskData: ITask = {
-      ...(data as ITask),
-      dueDate: data.dueDate.toISOString(),
-    };
+    // const taskData: ITask = {
+    //   ...(data as ITask),
+    //   dueDate: data.dueDate.toISOString(),
+    // };
 
-    dispatch(addTask(taskData));
+    // dispatch(addTask(taskData));
 
     setOpen(false);
     form.reset();
@@ -206,11 +206,11 @@ export function AddTaskModal() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Assign a user</SelectLabel>
-                          {users.map((user) => (
+                          {/* {users.map((user) => (
                             <SelectItem key={user.id} value={user.id}>
                               {user.name}
                             </SelectItem>
-                          ))}
+                          ))} */}
                         </SelectGroup>
                       </SelectContent>
                     </Select>

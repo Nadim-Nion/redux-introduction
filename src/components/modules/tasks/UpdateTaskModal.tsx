@@ -31,8 +31,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { updateTask } from "@/redux/features/task/taskSlice";
-import { useAppDispatch } from "@/redux/hook";
+// import { updateTask } from "@/redux/features/task/taskSlice";
+// import { useAppDispatch } from "@/redux/hook";
 // import { Label } from "@/components/ui/label";
 import type { IFormData, ITask } from "@/types";
 import { Popover } from "@radix-ui/react-popover";
@@ -50,19 +50,19 @@ export default function UpdateTaskModal({ task }: { task: ITask }) {
     },
   });
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // console.log("data in the form:", data);
+    console.log("data in the form:", data);
 
-    const taskData: ITask = {
-      ...(data as ITask),
-      id: task.id, // Preserve the existing task ID
-      isCompleted: task.isCompleted, // Preserve completion status
-      dueDate: data.dueDate.toISOString(),
-    };
+    // const taskData: ITask = {
+    //   ...(data as ITask),
+    //   id: task.id, // Preserve the existing task ID
+    //   isCompleted: task.isCompleted, // Preserve completion status
+    //   dueDate: data.dueDate.toISOString(),
+    // };
 
-    dispatch(updateTask(taskData));
+    // dispatch(updateTask(taskData));
   };
 
   return (

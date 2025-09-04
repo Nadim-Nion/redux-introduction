@@ -17,9 +17,9 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addUser } from "@/redux/features/user/userSlice";
-import { useAppDispatch } from "@/redux/hook";
-import type { IUser, IUserFormData } from "@/types";
+// import { addUser } from "@/redux/features/user/userSlice";
+// import { useAppDispatch } from "@/redux/hook";
+import type {  IUserFormData } from "@/types"; /* IUser, */
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 export default function AddUserModal() {
@@ -29,16 +29,16 @@ export default function AddUserModal() {
     },
   });
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // console.log("data in the form:", data);
+    console.log("data in the form:", data);
 
-      const taskData: IUser = {
-        ...(data as IUser),
-      };
+      // const taskData: IUser = {
+      //   ...(data as IUser),
+      // };
 
-      dispatch(addUser(taskData));
+      // dispatch(addUser(taskData));
   };
 
   return (

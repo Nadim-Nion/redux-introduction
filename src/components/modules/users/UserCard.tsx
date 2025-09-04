@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { removeUser } from "@/redux/features/user/userSlice";
-import { useAppDispatch } from "@/redux/hook";
+// import { Button } from "@/components/ui/button";
+// import { removeUser } from "@/redux/features/user/userSlice";
+// import { useAppDispatch } from "@/redux/hook";
 import type { IUser } from "@/types";
-import { Trash2 } from "lucide-react";
+// import { Trash2 } from "lucide-react";
 
 export default function UserCard({user}: {user: IUser}) {
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
   return (
    <div className="border px-5 py-3 rounded-md h-[60px]">
@@ -17,9 +17,9 @@ export default function UserCard({user}: {user: IUser}) {
           </h1>
         </div>
         <div className="flex gap-3 items-center">
-          <Button onClick={() => dispatch(removeUser(user.id))}>
+          {/* <Button onClick={() => dispatch(removeUser(user.id))}>
             <Trash2 />
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
