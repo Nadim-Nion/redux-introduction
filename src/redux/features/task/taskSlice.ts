@@ -5,7 +5,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 // import { v4 as uuidv4 } from "uuid";
 import { nanoid } from "@reduxjs/toolkit";
 import { removeUser } from "../user/userSlice";
-import { act } from "react";
 
 interface IInitialState {
   tasks: ITask[];
@@ -117,8 +116,6 @@ const taskSlice = createSlice({
     });
   },
 });
-
-/* I have watched the video of module (25-3) till 6:06 mins */
 
 export const selectTasks = (state: RootState) => {
   const filter = state.todo.filter;
