@@ -55,8 +55,8 @@ function Task() {
         <AddTaskModal />
       </div>
       <div className="space-y-5 mt-5">
-        {!isLoading && data.tasks.map((task: ITask) => (
-          <TaskCard key={task.id} task={task} />
+        {!isLoading && data.tasks.map((task: ITask, index: number) => (
+          <TaskCard key={index} task={task} />
         ))}
       </div>
     </div>

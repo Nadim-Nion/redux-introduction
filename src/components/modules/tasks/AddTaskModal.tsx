@@ -34,7 +34,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { IFormData } from "@/types"; /* ITask */
+import type { IFormData, ITask } from "@/types"; /* ITask */
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -43,6 +43,7 @@ import { CalendarIcon } from "lucide-react";
 // import { addTask } from "@/redux/features/task/taskSlice";
 // import { selectUsers } from "@/redux/features/user/userSlice";
 import { useState } from "react";
+import { useCreateTaskMutation } from "@/redux/api/baseApi";
 // import { is } from "date-fns/locale";
 
 export function AddTaskModal() {
@@ -54,22 +55,29 @@ export function AddTaskModal() {
       description: "",
       dueDate: new Date(),
       priority: "Low",
-      assignedTo: "",
     },
   });
+
+  const [createTask, { data}] = useCreateTaskMutation();
+  console.log("data in the form:", data);
 
   // const dispatch = useAppDispatch();
   // const users = useAppSelector(selectUsers);
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data in the form:", data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // console.log("data in the form:", data);
 
     // dispatch(addTask(data as ITask));
 
-    // const taskData: ITask = {
-    //   ...(data as ITask),
-    //   dueDate: data.dueDate.toISOString(),
-    // };
+    const taskData: ITask = {
+      ...(data as ITask),
+      dueDate: data.dueDate.toISOString(),
+      isCompleted: false,
+    };
+    createTask(taskData);
+
+    const res = await createTask(taskData).unwrap();
+    console.log("res inside from submit function:", res);
 
     // dispatch(addTask(taskData));
 
@@ -189,7 +197,7 @@ export function AddTaskModal() {
             />
 
             {/* Assigned To */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="assignedTo"
               render={({ field }) => (
@@ -206,18 +214,18 @@ export function AddTaskModal() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Assign a user</SelectLabel>
-                          {/* {users.map((user) => (
+                          {users.map((user) => (
                             <SelectItem key={user.id} value={user.id}>
                               {user.name}
                             </SelectItem>
-                          ))} */}
+                          ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </FormControl>
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Save and Cancel button */}
             <DialogFooter>

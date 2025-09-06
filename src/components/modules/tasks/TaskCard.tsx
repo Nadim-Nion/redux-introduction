@@ -1,5 +1,5 @@
-// import { Button } from "@/components/ui/button";
-// import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 // import {
 //   deleteTask,
@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 // import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import type { ITask } from "@/types";
 
-// import { Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import UpdateTaskModal from "./UpdateTaskModal";
 // import { selectUsers } from "@/redux/features/user/userSlice";
 
@@ -39,13 +39,15 @@ export default function TaskCard({ task }: IProps) {
         </div>
         <div className="flex gap-3 items-center">
           <UpdateTaskModal task={task} />
-          {/* <Button onClick={() => dispatch(deleteTask(task.id))}>
+          <Button 
+          // onClick={() => dispatch(deleteTask(task.id))}
+            >
             <Trash2 />
-          </Button> */}
-          {/* <Checkbox
+          </Button>
+         <Checkbox
             checked={task.isCompleted}
-            onClick={() => dispatch(toggleCompleteState(task.id))}
-          /> */}
+            // onClick={() => dispatch(toggleCompleteState(task.id))}
+          />
         </div>
       </div>
       {/* <p className="my-2">Assigned To - {assignedUser ? assignedUser.name : "No one"}</p> */}
