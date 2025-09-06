@@ -13,11 +13,16 @@ function Task() {
 
   // const dispatch = useAppDispatch();
 
-  const {data, isLoading, isError} = useGetTasksQuery(undefined);
-  console.log({data, isLoading, isError});
+  const { data, isLoading, isError } = useGetTasksQuery(undefined, {
+    pollingInterval: 30000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+    refetchOnReconnect: true,
+  });
+  console.log({ data, isLoading, isError });
 
-  if(isLoading){
-   return <div>Loading...</div>
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -55,9 +60,10 @@ function Task() {
         <AddTaskModal />
       </div>
       <div className="space-y-5 mt-5">
-        {!isLoading && data.tasks.map((task: ITask, index: number) => (
-          <TaskCard key={index} task={task} />
-        ))}
+        {!isLoading &&
+          data.tasks.map((task: ITask, index: number) => (
+            <TaskCard key={index} task={task} />
+          ))}
       </div>
     </div>
   );

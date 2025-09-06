@@ -74,7 +74,6 @@ export function AddTaskModal() {
       dueDate: data.dueDate.toISOString(),
       isCompleted: false,
     };
-    createTask(taskData);
 
     const res = await createTask(taskData).unwrap();
     console.log("res inside from submit function:", res);
